@@ -100,3 +100,4 @@ final class UserService {
         currentUser = user
     }
 }
+
