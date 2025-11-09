@@ -3,8 +3,23 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var theme: Theme
     @EnvironmentObject var router: Router
+    
+    @AppStorage("currentUser") private var currentUser: String?
 
     var body: some View {
+            Group {
+                if currentUser == nil {
+                    // When no user is logged in, show your login screen.
+                    // This can call `UserService.shared.login(username:)`.
+                    UserLoginView()
+                } else {
+                    // When a user is logged in, show the main app.
+                    mainContent
+                }
+            }
+        }
+    
+    private var mainContent: some View {
         ZStack {
             theme.bg.ignoresSafeArea()
 
